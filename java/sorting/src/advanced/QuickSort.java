@@ -12,11 +12,6 @@ public class QuickSort {
 	public static void main(String [] args){
 		int [] arr = {4,5,2,1,7,3,6,8};
 		QuickSort qs = new QuickSort(arr);
-//		int partition_result = qs.partition(arr, 0, arr.length-1);
-//		System.out.println("partition result :: " + String.valueOf(partition_result));
-//		
-//		qs.displayArrary(arr);
-//		qs.partition(arr, 0, 1);
 		qs.quick_sort(arr, 0, arr.length-1);
 		qs.displayArrary(arr);
 	}
@@ -28,6 +23,9 @@ public class QuickSort {
 	}
 	
 	public int partition(int [] arr, int start, int end){
+//		result,pivot,left,right는 member field로 선언해서 사용해야 
+//		매 step마다의 재귀호출시에 result,pivot,left,right에 대한 증감연산이 기억된다.
+		
 //		int result = 0;
 //		int pivot = start;
 //		int left = start+1;
@@ -40,14 +38,9 @@ public class QuickSort {
 		while(left<=right){
 			while(arr[left]<arr[pivot]) left++;
 			while(arr[right]>arr[pivot]) right--;
-			if(left<=right) swap(arr, left, right);
+			if(left<=right) 
+				swap(arr, left, right);
 		}
-//		System.out.println("");
-//		System.out.println("right == " + String.valueOf(right));
-//		System.out.println("left == " + String.valueOf(left));
-//		System.out.println("pivot == " + String.valueOf(pivot));
-//		displayArrary(arr);
-//		System.out.println("");
 		swap(arr, right, pivot);
 		result = right;
 		return result;
