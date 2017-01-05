@@ -49,7 +49,7 @@ P------ L R----<br/>
 R : stopped
 
 > ##### Step 6)
-5 3 2 4 1 8 6 7
+5 3 2 4 1 8 6 7<br/>
 P------ L R----<br/>
 SWAP(L,R)<br/>
 The values of L,R are swaped.<br/>
