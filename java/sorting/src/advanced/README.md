@@ -83,14 +83,13 @@ SWAPPED : SWAP(P,R)
 psuedo code로 표현해보면,
 <pre>
 <code>
-while(left<=right)
-  while(arr[left]<arr[pivot])left+=1
-  while(arr[right]>arr[pivot])right-=1
+while(left <= right)
+  while(arr[left] < arr[pivot]) left=left+1
+  while(arr[right] > arr[pivot]) right=right-1
   swap(arr,left, right)
 swap(arr,right, pivot)
 </code>
 </pre>
-
 
 
 
