@@ -55,41 +55,48 @@ SWAP(L,R)<br/>
 The values of L,R are swaped.<br/>
 
 #####예제 2)
-이번에는 각각의 연산마다의 수행을 모두 표현하지 않고 L,R이 멈출때의 각 요소들을 그림으로 표현해보겠다.
+이번에는 여러번의 partition을 걸쳐야 하는 배열을 준비했다. 각각의 연산마다의 수행을 모두 표현하지 않고 L,R이 멈출때의 각 요소들의 위치, swap될때의 요소들의 위치를 그림으로 표현해보면 아래와 같다.<br/>
+>##### Step 1)
 4 5 2 1 7 3 6 8<br/>
 P L---------- R<br/>
 L : Stopped.
 
+>##### Step 2)
 4 5 2 1 7 3 6 8<br/>
 P L------ R<br/>
 R : Stopped.
 
+>##### Step 3)
 4 3 2 1 7 5 6 8<br/>
 P L------ R<br/>
 SWAPPED : SWAP(L,R)
 
+>##### Step 4)
 4 3 2 1 7 5 6 8<br/>
 P------ L R<br/>
 L : Stopped.
 
+>##### Step 5)
 4 3 2 1 7 5 6 8<br/>
 P-----R L<br/>
 R : Stopped.
 
-1 3 2 4 7 5 6 8<br/>
-P-----R L<br/>
+>##### Step 6)
+1 3 2 4 7 5 6 8  
+P-----R L  
 SWAPPED : SWAP(P,R)
 
 psuedo code로 표현해보면,
 <pre>
 <code>
-while(left <= right)
-  while(arr[left] < arr[pivot]) left=left+1
-  while(arr[right] > arr[pivot]) right=right-1
+while(left<=right)
+  while(arr[left]<arr[pivot])left+=1
+  while(arr[right]>arr[pivot])right-=1
   swap(arr,left, right)
 swap(arr,right, pivot)
 </code>
 </pre>
+
 
 
 
