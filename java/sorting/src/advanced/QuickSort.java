@@ -10,7 +10,8 @@ public class QuickSort {
 	}
 	
 	public static void main(String [] args){
-		int [] arr = {4,5,2,1,7,3,6,8};
+//		int [] arr = {4,5,2,1,7,3,6,8};
+		int [] arr = {5,3,2,4,8,1,6,7};
 		QuickSort qs = new QuickSort(arr);
 		qs.quick_sort(arr, 0, arr.length-1);
 		qs.displayArrary(arr);
@@ -35,10 +36,11 @@ public class QuickSort {
 		left = start+1;
 		right = end;
 		
-		while(left<=right){
-			while(arr[left]<arr[pivot]) left++;
-			while(arr[right]>arr[pivot]) right--;
-			if(left<=right) 
+		while(left<right){ //modified :: left == right일 경우를 거치는 것은 모호한 연산이므로 =연산 제거 
+			// modified : 매 step마다 left, right 값의 상한/하한을 정해줘야 에러가 발생하지 않는다.
+			while(arr[left]<arr[pivot] && left<end) left++;
+			while(arr[right]>arr[pivot] && right>start) right--;
+			if(left<right) // modified :: left == right일 경우를 거치는 것은 모호한 연산이므로 =연산 제
 				swap(arr, left, right);
 		}
 		swap(arr, right, pivot);
