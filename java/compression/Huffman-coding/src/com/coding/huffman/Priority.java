@@ -1,13 +1,13 @@
 package com.coding.huffman;
 
 public class Priority {
-	private int priority;
+	private float priority;
 	private char data;
 	public Priority(){}
-	public int getPriority() {
+	public float getPriority() {
 		return priority;
 	}
-	public void setPriority(int priority) {
+	public void setPriority(float priority){
 		this.priority = priority;
 	}
 	public char getData() {

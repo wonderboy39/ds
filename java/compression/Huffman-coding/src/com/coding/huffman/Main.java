@@ -27,46 +27,23 @@ public class Main {
 		for(int i = 0; i<countArr.length; i++){
 			countMap.put(String.valueOf(c), util.countProb(sb, c));
 			Priority p = new Priority();
-			p.setPriority(util.countProb(sb, c));
+			p.setPriority(util.countProb(sb, c)/(float)sb.length());
 			p.setData(c);
 			pList.add(p);
 			
 			countArr[i] = util.countProb(sb, c++);
 			System.out.println("countArr["+String.valueOf(i)+"] == " + countArr[i]);
 		}
-		
-		int min = 0;
-		for(int i=0; i<pList.size(); i++){
-			min = pList.get(i).getPriority();
-			for(int j=i+1; j<pList.size(); j++){
-				if(min > pList.get(j).getPriority()){
-					Collections.swap(pList, i, j);
-				}
-			}
-		}
-		
-		System.out.println("priority");
-		for(Priority p : pList){
-			System.out.println(String.valueOf(p.getPriority()) + " ");
-		}
-		
-//		int min,minIdx =0;
-//		for(int i=0; i<countArr.length; i++){
-//			min = countArr[i];
-//			for(int j=i+1; j<countArr.length; j++){
-//				if(min>countArr[j]){
-//					min = countArr[j];
-//					minIdx = j;
-//				}
-//			}
-//			Priority p = new Priority();	
-//		}
-		
 		System.out.println();
-		Node root = new Node("root",123);
-		root.setLeft(new Node("A",11));
-		root.setRight(new Node("B",12));
 		
+		// Priority Queue sorting.
+		util.sortingList(pList);
+		util.printList(pList);
+		
+//		Node root = new Node("root",123);
+//		root.setLeft(new Node("A",11));
+//		root.setRight(new Node("B",12));
+//		
 //		System.out.println();
 //		System.out.println("root == " + root.getData());
 //		System.out.println("left == " + root.getLeft().getData()+", percent == " + String.valueOf(root.getLeft().getPercent()));

@@ -6,13 +6,21 @@ public class Node {
 	private Node parent;
 	private Node left;
 	private Node right;
+	private Priority priority;
 	
-	public Node(final String data, final float percent){
-		this.data = data;
-		this.percent = percent;
-		System.out.println("percent == " + String.valueOf(percent));
+	public Priority getPriority() {
+		return priority;
 	}
-	
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
+	}
+
+	public Node(final String data){
+		this.data = data;
+//		System.out.println("percent == " + String.valueOf(percent));
+	}
+
 	public Node(Node parent, final String data, final float percent){
 		this.data = data;
 		this.percent = percent;
