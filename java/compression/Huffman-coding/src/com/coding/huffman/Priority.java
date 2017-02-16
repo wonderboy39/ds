@@ -3,7 +3,9 @@ package com.coding.huffman;
 public class Priority {
 	private float priority;
 	private char data;
+
 	public Priority(){}
+	
 	public float getPriority() {
 		return priority;
 	}

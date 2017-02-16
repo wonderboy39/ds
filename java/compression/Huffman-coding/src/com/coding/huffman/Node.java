@@ -15,6 +15,12 @@ public class Node {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
+	
+	public void setPriority (float priority, char data){
+		this.priority = new Priority();
+		this.priority.setPriority(priority);
+		this.priority.setData(data);
+	}
 
 	public Node(final String data){
 		this.data = data;
