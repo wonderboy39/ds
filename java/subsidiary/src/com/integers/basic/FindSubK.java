@@ -8,15 +8,8 @@ import java.util.Scanner;
 /**
  * 
  * @author soon
- * 1) 입력받을 때 해당 정수에 대해 2/-2차이가 값을 Map<Integer index, ArrayList<Integer>>에 저장,  (x)
- * 	  다음 입력시에 입력값이 있을 경우 Map<Integer index, ArrayList<Integer>>에 저장한다.
- *    subMap	:: i : -2,2 ... 이런 형태는 별로 필요 없음
- *    resultMap ::  자기자신이 k만큼의 차이를 가지고 있으면 해당 인덱스에 대해 자기자신의 값을 resultMap에 저
- *    		3 : 1,3번째 인덱스
- *    		4 : 2 번째 인덱스 
- *    등등...
- *      
- * 2) 
+ * 1) 입력받은 배열을 quicksort로 정렬 
+ * 2) 정렬 후 이진 탐색  
  */
 
 public class FindSubK {
@@ -27,7 +20,6 @@ public class FindSubK {
 		right = arr.length-1;
 		result = 0;
 	}
-	
 	
 	public int partition(int [] arr, int start, int end){
 		result = 0;
@@ -67,6 +59,24 @@ public class FindSubK {
 		System.out.println();
 	}
 	
+	public int binarySearch(int [] arr, int low, int high, int x){
+		int result = -1;
+		if(high >= low){
+//			System.out.println("before binarySearch");
+			int mid = low + (high - low)/2;
+//			int mid = binarySearch(arr, low, high, x);
+			System.out.println("(mid, low, high, x) : " + String.valueOf(mid) +","+
+					String.valueOf(low) + "," + String.valueOf(high) + ","+ String.valueOf(x));
+			if(x==arr[mid])
+				return mid;
+			if(x>arr[mid])
+				return binarySearch(arr, (mid+1), high, x);
+			else
+				return binarySearch(arr, low, (mid-1), x);
+		}
+		return result;
+	}
+	
 	public static void main(String [] args){
 		int [] arr = null;
 		Scanner scanner = new Scanner(System.in);
@@ -83,9 +93,7 @@ public class FindSubK {
 		}
 		
 		f.quick_sort(arr, 0, arr.length-1);
-		f.displayArr(arr);
-		
-		int count = 0;
+//		f.displayArr(arr);
 		
 //		이진 탐색으로 고쳐야 하는 부분.
 //		arr[i=0~n]에 대해서 arr[j=i+1~ n]과의 차가 k인 정수의 갯수를 카운팅
@@ -99,9 +107,17 @@ public class FindSubK {
 //					count++;
 //				}
 //			}
-//		}
+//		}		
+		
+		int count = 0;
+		for(int i=0; i<arr.length-1; i++){
+			if(f.binarySearch(arr, i+1, arr.length-1, arr[i]+k)!=-1)
+				count++;
+			if(f.binarySearch(arr, i+1, arr.length-1, arr[i]-k)!=-1)
+				count++;
+		}
 		
 		System.out.println("차가 " + String.valueOf(k) + "인 정수의 갯수 :: " + String.valueOf(count));
-		System.out.println("/n테스트 종료.");
+		System.out.println("\n테스트 종료.");
 	}
 }
