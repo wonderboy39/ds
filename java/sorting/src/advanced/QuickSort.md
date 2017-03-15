@@ -99,6 +99,26 @@ partition()함수를 psuedo code로 표현해보면 아래와 같다.
 swap(arr, right, pivot)
 </code></pre>
 
+하지만 위와 같이 partition을 구성할 경우 배열의 크기가 커지면 정렬하고자 하는 부분배열들의 가장 마지막 인덱스를 처리하기 곤란해진다. left==end,right==start인 시점을 찾아 벗어나도록 해야 하는데 이것이 배열 index가 하나씩 어긋나서 처리하기 불편해지기 때문이다. 따라서 위의 psuedo code를 do~while로 개선해보면 아래와 같다.
+```{.java}
+partition (arr, start, end){
+  pivot = start;
+  left = start;
+  right = end+1;
+  while(left<right){
+  	do{
+  		left++;
+  	}while(left<end && arr[left] <= arr[pivot]);
+  	do{
+  		right--;
+  	}while(right>start && arr[right] >= arr[pivot]);
+  	if(left<right) 
+  		swap(arr, left, right);
+  }
+  swap(arr, right, pivot);
+  return right;
+}
+```
 ##QuickSort 작성  
 
 

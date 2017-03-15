@@ -11,7 +11,9 @@ public class QuickSort {
 	
 	public static void main(String [] args){
 //		int [] arr = {4,5,2,1,7,3,6,8};
-		int [] arr = {5,3,2,4,8,1,6,7};
+//		int [] arr = {5,3,2,4,8,1,6,7};
+		int [] arr = {5,3,2,4,8,1,6,7,10,9,11,12,14,13,15,17,18,19,16,20};
+		
 		QuickSort qs = new QuickSort(arr);
 		qs.quick_sort(arr, 0, arr.length-1);
 		qs.displayArrary(arr);
@@ -26,28 +28,30 @@ public class QuickSort {
 	public int partition(int [] arr, int start, int end){
 //		result,pivot,left,right는 member field로 선언해서 사용해야 
 //		매 step마다의 재귀호출시에 result,pivot,left,right에 대한 증감연산이 기억된다.
-		
-//		int result = 0;
-//		int pivot = start;
-//		int left = start+1;
-//		int right = end;
-		result = 0;
 		pivot = start;
-		left = start+1;
-		right = end;
+		left = start;
+		right = end+1;
 		
 		while(left<right){ //modified :: left == right일 경우를 거치는 것은 모호한 연산이므로 =연산 제거 
 			// modified : 
-			// 매 step마다 left, right 값의 상한/하한을 정해줘야 
-			// 배열 인덱스를 잘못 참조해서 생기는 Out of Range 에러가 발생하지 않는다.
-			while(arr[left]<arr[pivot] && left<end) left++;
-			while(arr[right]>arr[pivot] && right>start) right--;
+			// 	매 step마다 left, right 값의 상한/하한을 정해줘야 
+			// 	배열 인덱스를 잘못 참조해서 생기는 Out of Range 에러가 발생하지 않는다.
+			// 	일반 while문을 수행할 경우 배열이 커질 경우 배열의 끝요소의 index가 하나씩 어긋난다.
+			// 	또한 stack over flow 예외가 발생한다. 
+			// 	따라서 do~while을 사용하도록 변경
+//			while(arr[left]<arr[pivot] && left<end) left++;
+//			while(arr[right]>arr[pivot] && right>start) right--;
+			do{
+				left++;
+			}while(left<end && arr[left]<=arr[pivot]);
+			do{
+				right--;
+			}while(right>start && arr[right]>=arr[pivot]);
 			if(left<right) // modified :: left == right일 경우를 거치는 것은 모호한 연산이므로 =연산 제거 
 				swap(arr, left, right);
 		}
 		swap(arr, right, pivot);
-		result = right;
-		return result;
+		return right;
 	}
 	
 	public void swap(int [] arr, int num1, int num2){
