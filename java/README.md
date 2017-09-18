@@ -1,4 +1,17 @@
-# sorting
+# INDEX
+
+- [compression](#compression)
+- [sorting](#sorting)
+  : [advanced](#advanced) 
+  : [basic](#basic)
+  : [tree](#tree)
+  : [utils](#utils)
+- [subsidiary](#subsidiary)
+
+## compression
+잠깐 포기…   
+
+## sorting
 ### advanced
 퀵 정렬, 퀵정렬의 파티션과정 정리한 문서  
 
@@ -18,9 +31,3 @@
 이진탐색  
 배열의 무게중심 구하기  
 비트 조작 등등 여러가지 제어문으로 조지는 문제들 연습하자!!!  
-
-## 향후 계획
-그래프 Prim's MST 알고리즘 : 그림으로 그려봤던 내용 코드로 작성  
-
-
-
