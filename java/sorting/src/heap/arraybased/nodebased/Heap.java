@@ -15,10 +15,24 @@ public class Heap {
 		}
 	}
 	
+	public void insertHeapNode2 (HeapNode node){
+		System.out.println("currSize :: " + String.valueOf(currSize));
+		arrHeapNode[currSize] = node;
+		int pos = currSize;
+		currSize++;
+		
+		while(pos > 0 && 
+				arrHeapNode[pos].getData() > arrHeapNode[(pos-1)/2].getData() ){	
+			HeapNode temp = arrHeapNode[pos];
+			arrHeapNode[pos] = arrHeapNode[(pos-1)/2];
+			arrHeapNode[(pos-1)/2] = temp;
+			pos = (pos-1)/2;
+		}
+	}
+	
 	public void insertHeapNode(HeapNode node){
 		int pos;
 		pos = ++(currSize);
-		HeapNode temp = arrHeapNode[pos];
 		while((pos!=1) && (node.getData() > arrHeapNode[pos/2].getData())){
 			HeapNode t = arrHeapNode[pos];
 			arrHeapNode[pos] = arrHeapNode[pos/2];
@@ -27,7 +41,26 @@ public class Heap {
 //			pos = pos/2;
 		}
 		arrHeapNode[pos] = node;
+		System.out.println("pos :: " + String.valueOf(pos)+ ", currSize :: " + String.valueOf(currSize));
 		System.out.println("hello ::" + arrHeapNode[pos].getData());
+		
+//		int pos = currSize;
+//		System.out.println("pos :: " + String.valueOf(pos));
+//		currSize++;
+//		
+//		while((pos > 0) && arrHeapNode[pos].getData() > arrHeapNode[(pos-1)/2].getData()){
+//			int temp = arrHeapNode[pos].getData();
+//			arrHeapNode[pos].setData(arrHeapNode[(pos-1)/2].getData());
+//			arrHeapNode[(pos-1)/2].setData(temp);
+//			
+//			pos = (pos-1)/2;
+//		}
+		
+	}
+	
+	public HeapNode deleteHeapNode2(HeapNode node){
+		HeapNode result = null;
+		return result;
 	}
 	
 	public HeapNode deleteHeapNode(HeapNode node){
@@ -58,12 +91,25 @@ public class Heap {
 		return root;
 	}
 	
+//	public HeapNode deleteHeapNode2 (HeapNode node){
+//		// 루트 노드 기억
+//		HeapNode root = arrHeapNode[0];
+//		// 가장 마지막 노드를 루트로 변경 
+//		arrHeapNode[0] = arrHeapNode[--currSize];
+//		
+//	}
+	
 	public void printHeapNodes(){
 		System.out.print("[");
 //		for(int i=1; i<currSize-1; i++){
 //			System.out.print(String.valueOf(arrHeapNode[i].getData()));
 //		}
-		for(int i=1; i<currSize; i++){
+//		for(int i=1; i<currSize; i++){
+//			if(arrHeapNode[i] != null){
+//				System.out.print(String.valueOf(arrHeapNode[i].getData()));				
+//			}
+//		}
+		for(int i=0; i<currSize; i++){
 			if(arrHeapNode[i] != null){
 				System.out.print(String.valueOf(arrHeapNode[i].getData()));				
 			}
