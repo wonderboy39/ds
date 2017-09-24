@@ -50,7 +50,63 @@ public class BSTTree {
 	// 삭제 
 //	public void deleteNode(BSTNode root, int data)
 	public void deleteNode(int data){
+		BSTNode parent, child, succ, succ_parent, current;
+		parent = null;
+		current = root;
 		
+		// 삭제하려는 노드 탐색 
+		while( current != null && current.getData() != data){
+			current = (data < current.getData()) ? current.getLeft() : current.getRight();
+		}
+		
+		if(current == null){
+			System.out.println(String.valueOf(data) + "가 트리에 존재하지 않습니다. ");
+			return;
+		}
+		
+		if(current.getLeft() == null && current.getRight() == null){
+			// 첫 번째 경우 : 단말노드일 경우
+			if(parent != null){
+				if(parent.getLeft() == current)
+					parent.setLeft(null);
+				else
+					parent.setRight(null);
+			}
+			else{
+				root = null;
+			}
+		}
+		else if(current.getLeft()== null || current.getRight() == null){
+			// 두번째 경우 : 하나의 자식만 가지는 경우
+			child = (current.getLeft() != null) ? current.getLeft() : current.getRight();
+			if(parent != null){
+				if(parent.getLeft() == current)
+					parent.setLeft(child);
+				else
+					root = child;
+			}
+		}
+		else{
+			// 세번째 경우 : 두개의 자식을 가지는 경우
+			// 오른쪽 서브 트리에서 후계자를 찾는다. 
+			succ_parent = current;
+			succ = current.getRight();
+			
+			// 후계자를 찾아서 계속해서 오른쪽 서브트리의 왼쪽으로 이동한다. 
+			while(succ.getLeft() != null){
+				succ_parent = succ;
+				succ = succ.getLeft();
+			}
+			
+			// 후계자의 부모와 자식을 연결
+			if(succ_parent.getLeft() == succ) succ_parent.setLeft(succ.getRight());
+			else succ_parent.setRight(succ.getRight());
+			
+			// 후보자가 가진 키 값을 현재 노드에 복사
+			current.setData(succ.getData());
+			current = succ;
+		}
+		current = null;
 	}
 	
 	// 탐색 
