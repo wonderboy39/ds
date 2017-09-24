@@ -9,14 +9,13 @@ public class Main {
 		System.out.println("i == " + String.valueOf(i));
 		System.out.println("data == " + String.valueOf(data));
 		
-//		Heap h = new Heap(10);
-//		h.insert(5);
-//		h.insert(1);
-//		h.insert(4);
-//		h.insert(3);
-//		h.insert(2);
-////		h.insert(5);
-//		
-//		h.printHeap();
+		Heap h = new Heap(10, "int");
+		h.insert(5);
+		h.insert(1);
+		h.insert(4);
+		h.insert(3);
+		h.insert(2);
+		
+		h.printHeap();
 	}
 }
