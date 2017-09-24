@@ -30,6 +30,34 @@ public class Heap {
 		System.out.println("hello ::" + arrHeapNode[pos].getData());
 	}
 	
+	public HeapNode deleteHeapNode(HeapNode node){
+		// 삭제 :
+		int parent, child;
+		HeapNode root, last;
+		
+		root = arrHeapNode[1]; // 루트노드 
+		last = arrHeapNode[currSize--]; // 마지막 노드 
+		
+		parent = 1;
+		child = 2;
+		
+		while(child <= currSize){
+			if((child < currSize) && 
+					arrHeapNode[child].getData() < arrHeapNode[child+1].getData()){
+				child++;
+			}
+			if(last.getData() >= arrHeapNode[child].getData()) break;
+			
+			arrHeapNode[parent] = arrHeapNode[child];
+			parent = child;
+			child *=2;
+			
+		}
+		arrHeapNode[parent] = last;
+		
+		return root;
+	}
+	
 	public void printHeapNodes(){
 		System.out.print("[");
 //		for(int i=1; i<currSize-1; i++){
