@@ -15,5 +15,7 @@ public class GraphMain {
 		g.insertEdge(0, 3);
 //		g.printGraph();
 		g.printAdjNodes(0);
+		
+		g.bfs();
 	}
 }

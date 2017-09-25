@@ -2,6 +2,8 @@ package graph;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Graph {	
 	// 정점이 가진 인접 리스트 
@@ -10,11 +12,15 @@ public class Graph {
 	ArrayList<GNode> [] arrVertex = null;
 	// 그래프 안의 현재 정점의 수 
 	private int nVertex;
+	// 방문한 정점들의 위치 기억하는 배열
+	private Map<GNode, Boolean> visitedMap = null;
 	
 	public static ArrayDeque<GNode> queue = new ArrayDeque<GNode>();
 	
 	public Graph(int max){
 		arrVertex = new ArrayList[max];
+//		discovered = new int[max];
+		visitedMap = new HashMap<GNode, Boolean>();
 	}
 	
 	public void graphInit(){
@@ -37,6 +43,7 @@ public class Graph {
 		
 		// u를 v의 인접리스트에 추가 
 		arrVertex[v].add(arrVertex[u].get(0));
+		visitedMap.put(vNode, false);
 	}
 	
 	public void printGraph(){
@@ -57,8 +64,25 @@ public class Graph {
 	}
 	
 	public void bfs(){
-		GNode node = null;
+		GNode node = arrVertex[0].get(0);
+		queue.add(node);
+		visitedMap.put(node, true);
 		
-		
+		while(queue.size() > 0){
+			node = queue.pollFirst();
+			System.out.println(node.getData());
+			
+			if (node != null){
+//			if(arrVertex[node.getData()] != null){
+				for(GNode vertex : arrVertex[node.getData()]){
+					if(visitedMap.containsKey(vertex)){
+						if(visitedMap.get(vertex) == false){
+							queue.add(vertex);
+							visitedMap.put(vertex, true);
+						}						
+					}
+				}
+			}
+		}
 	}
 }
