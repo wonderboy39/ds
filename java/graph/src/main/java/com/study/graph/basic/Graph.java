@@ -81,6 +81,32 @@ public class Graph {
     }
 
     public boolean deleteEdge(final String fromKey, final String toKey){
+        Vertex from = this.first;
+
+        while (from != null){
+            if(from.getKey() == fromKey) break;
+            from = from.getNext();
+        }
+
+        if(from == null) return false;
+
+        Edge fromEdge = from.getEdge();
+        Edge preEdge = null;
+
+        while(fromEdge != null){
+            if(toKey == fromEdge.getDestination().getKey()) break;
+            preEdge = fromEdge;
+            fromEdge = fromEdge.getNextEdge();
+        }
+
+        if(fromEdge == null) return false;
+
+        if(preEdge != null){
+            preEdge.setNextEdge(fromEdge.getNextEdge());
+        }
+        else {
+            from.setEdge(fromEdge.getNextEdge());
+        }
 
         return true;
     }
