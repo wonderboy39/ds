@@ -1,8 +1,13 @@
 package com.study.graph.basic.directed.zerocho;
 
 public class Graph {
-    private Integer count = 0;
-    private Vertex first = null;
+    private Integer count;
+    private Vertex first;
+
+    public Graph(){
+        this.count = 0;
+        this.first = null;
+    }
 
     public void insertVertex(final String key){
         Vertex vertex = new Vertex(key);
