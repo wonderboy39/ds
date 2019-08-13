@@ -13,12 +13,12 @@ public class Graph {
         Vertex vertex = new Vertex(key);
         Vertex last = this.first;
 
+        //
         if(last != null){
             while(last.getNext() != null){
                 last = last.getNext();
             }
-            Vertex next = last.getNext();
-            next = vertex;
+            last.setNext(vertex);
         }
         else{
             // 그래프에 Vertex를 처음 insert 할때
