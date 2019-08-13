@@ -4,6 +4,7 @@ public class Graph {
     private Integer count;
     private Vertex first;
 
+    // 연결리스트 그래프는 처음 하나의 노드를 기준으로 줄줄이 사탕으로 이어나간다.
     public Graph(){
         this.count = 0;
         this.first = null;
@@ -13,23 +14,25 @@ public class Graph {
         Vertex vertex = new Vertex(key);
         Vertex last = this.first;
 
-        //
+        // 연결된 vertex 들의 가장 마지막 끝 부분, 즉, null 인 노드를 탐색한다.
         if(last != null){
             while(last.getNext() != null){
                 last = last.getNext();
             }
             last.setNext(vertex);
         }
+        // 그래프에 vertex 를 처음 insert 할때
         else{
-            // 그래프에 Vertex를 처음 insert 할때
             this.first = vertex;
         }
     }
 
     public boolean deleteVertex(final String key){
+        // GRAPH 가 가진 노드들 중 가장 첫번째 노드를 선택
         Vertex vertex = this.first;
         Vertex prev = null;
 
+        // 해당 key를 가진 노드의 바로 전 노드까지 탐색
         while(vertex.getKey() != key){
             prev = vertex;
             vertex = vertex.getNext();
@@ -39,6 +42,7 @@ public class Graph {
 
         if(vertex.getEdge() == null) return false;
 
+        // 링크(간선) 제거후 삭제할 위치의 다음노드로 링크(간선) 연결작업
         if(prev != null){
             prev.setNext(vertex.getNext());
         }
